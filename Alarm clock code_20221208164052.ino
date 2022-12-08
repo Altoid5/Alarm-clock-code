@@ -1,13 +1,13 @@
 #include <DS3231.h>
 #include <EEPROM.h>
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h> // includes the LiquidCrystal Library
+#include <LiquidCrystal_I2C.h> 
 #include <Keypad.h>
  
 DS3231 rtc(SDA, SCL);
 LiquidCrystal_I2C lcd(0x27,16,2);
-const byte ROWS = 4; //four rows
-const byte COLS = 4; //three columns
+const byte ROWS = 4; 
+const byte COLS = 4; 
 char* password="4567";
 int currentposition=0;
 char keys[ROWS][COLS] = {
@@ -17,8 +17,8 @@ char keys[ROWS][COLS] = {
   {'*','0','#','D'}
 };
  
-byte rowPins[ROWS] = {7,8,9,10}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {A3,A2,A1,A0}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {7,8,9,10}; 
+byte colPins[COLS] = {A3,A2,A1,A0}; 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
  
  
@@ -31,7 +31,7 @@ void storeHour(String);
  
 void setup() {
   pinMode(4, OUTPUT);
-  lcd.init();                      // initialize the lcd
+  lcd.init();                      
   // Print a message to the LCD.
   lcd.backlight();
   Serial.begin(9600);
@@ -39,10 +39,10 @@ void setup() {
   lcd.begin(16, 2);
   lcd.clear();
  
-  // The following lines can be uncommented to set the date and time
-   //rtc.setDOW(WEDNESDAY);     // Set Day-of-Week to SUNDAY
-  rtc.setTime(12, 20, 0);     // Set the time to 12:00:00 (24hr format)
-   //rtc.setDate(11, 23, 2022);   // Set the date to January 1st, 2014
+ 
+   //rtc.setDOW(WEDNESDAY);    
+   //rtc.setTime(12, 20, 0);     
+   //rtc.setDate(11, 23, 2022);  
  
   //Getting alarm time
   storedHour = getHour();
